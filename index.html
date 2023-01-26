@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<script
+			src="https://code.jquery.com/jquery-3.2.1.js"
+			integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+			crossorigin="anonymous"
+		></script>
+		<link rel="stylesheet" href="./style.css" />
+		<title>電卓アプリ</title>
+	</head>
+	<body>
+		<form action="calcurator">
+			<!-- tableタグ 表形式のデータを表現する -->
+			<table>
+				<!-- 液晶画面部分 -->
+				<tr>
+					<!-- colspan 表のセルを指定した数だけ連結させる -->
+					<td colspan="4">
+						<input type="text" id="display" name="display" value="0" disabled />
+					</td>
+				</tr>
+
+				<!-- 上から１段目 -->
+				<tr>
+					<!-- クリックイベントに反応するためtypeをbuttonにする -->
+					<!-- formのHTML要素内でthisを使うと、その要素自身を参照する -->
+					<!-- input要素で作ったボタンの属性として、onclickにthisを指定することで、クリックした時にinput要素そのものを取得する -->
+					<td><input type="button" value="7" onclick="get_calc(this)" /></td>
+					<td><input type="button" value="8" onclick="get_calc(this)" /></td>
+					<td><input type="button" value="9" onclick="get_calc(this)" /></td>
+					<td>
+						<input
+							type="button"
+							value="/"
+							class="operator"
+							id="division"
+							name="div_btn"
+							onclick="get_calc(this)"
+						/>
+					</td>
+				</tr>
+
+				<!-- 上から２段目 -->
+				<tr>
+					<td><input type="button" value="4" onclick="get_calc(this)" /></td>
+					<td><input type="button" value="5" onclick="get_calc(this)" /></td>
+					<td><input type="button" value="6" onclick="get_calc(this)" /></td>
+					<td>
+						<input
+							type="button"
+							value="*"
+							class="operator"
+							id="multi"
+							name="multi_btn"
+							onclick="get_calc(this)"
+						/>
+					</td>
+				</tr>
+
+				<!-- 上から３段目 -->
+				<tr>
+					<td><input type="button" value="1" onclick="get_calc(this)" /></td>
+					<td><input type="button" value="2" onclick="get_calc(this)" /></td>
+					<td><input type="button" value="3" onclick="get_calc(this)" /></td>
+					<td>
+						<input
+							type="button"
+							value="-"
+							class="operator"
+							id="sub"
+							onclick="get_calc(this)"
+						/>
+					</td>
+				</tr>
+
+				<!-- 上から４段目 -->
+				<tr>
+					<td><input type="button" value="0" onclick="get_calc(this)" /></td>
+					<td><input type="button" value="C" onclick="get_calc(this)" /></td>
+					<td>
+						<input
+							type="button"
+							value="="
+							id="equal"
+							onclick="get_calc(this)"
+						/>
+					</td>
+					<td>
+						<input
+							type="button"
+							value="+"
+							class="operator"
+							id="add"
+							onclick="get_calc(this)"
+						/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
