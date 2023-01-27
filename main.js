@@ -8,32 +8,32 @@ function get_calc(btn) {
 		display.value = "0";
 		equal_button.disabled = false;
 	} else {
-		if (display.value == "0" && !get_operator(btn.value)) {
+		if (display.value == "0" && !isOperators(btn.value)) {
 			display.value = "";
-		} else if (is_the_last_operator(display.value) && get_operator(btn.value)) {
+		} else if (isTheLastOerator(display.value) && isOperators(btn.value)) {
 			display.value = display.value.slice(0, -1);
 		}
 		display.value += btn.value;
-		disabled_equal(display.value);
+		disabledEqual(display.value);
 	}
 }
 
 // 数字のみ　/[0-9]*[0-9]$/であればtrue
-function is_numeric_only(str) {
+function isNumericOnly(str) {
 	let num = /^[0-9]*[0-9]$/;
 	return num.test(str);
 }
 
 // 最後が演算子であればtrue
-function is_the_last_operator(str) {
+function isTheLastOerator(str) {
 	let ope = /.[^0-9]$/;
 	return ope.test(str);
 }
 
 // イコールを無効化する処理
-function disabled_equal(str) {
+function disabledEqual(str) {
 	const equal_button = document.getElementById("equal");
-	if (is_numeric_only(str) || is_the_last_operator(str)) {
+	if (isNumericOnly(str) || isTheLastOerator(str)) {
 		equal_button.disabled = true;
 	} else {
 		equal_button.disabled = false;
@@ -41,12 +41,16 @@ function disabled_equal(str) {
 }
 
 // 押されたボタンが演算子か判定　演算子であればtrue
-function get_operator(btn) {
-	if (btn == "+" || btn == "-" || btn == "*" || btn == "/") {
-		return true;
-	} else {
-		return false;
-	}
+// function isOperators(btn) {
+// 	if (btn == "+" || btn == "-" || btn == "*" || btn == "/") {
+// 		return true;
+// 	} else {
+// 		return false;
+// 	}
+// }
+function isOperators(btn) {
+	const operators = ["+", "-", "*", "/"];
+	return operators.includes(btn) ? true : false;
 }
 
 // 最後の文字を取得する;
@@ -59,7 +63,7 @@ function get_operator(btn) {
 // 最後が演算子の状態であり、かつ、押されたボタンが演算子の場合
 // 押されたボタンの演算子を上書きする
 function update_operator(str, btn) {
-	if (is_the_last_operator(str) && get_operator(btn)) {
+	if (isTheLastOerator(str) && isOperators(btn)) {
 		str = str.slice(0, -1);
 	}
 }
